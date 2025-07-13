@@ -1,10 +1,8 @@
 "use client";
-
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-// --- ナビアイテム ---
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
@@ -18,14 +16,12 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 left-0 w-full bg-white z-50 shadow-sm">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between relative">
-        {/* スマホ：中央にテキストロゴ */}
-        <div className="text-xl font-bold mx-auto md:mx-0 md:block">
-          STAND
-        </div>
+      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center relative">
+        {/* スマホ：中央テキストロゴ */}
+        <div className="md:hidden flex-1 text-center text-xl font-bold select-none">STAND</div>
 
-        {/* PCナビ：左から2cm(約32px=8の4倍=32px=ml-8くらい)右寄せ */}
-        <nav className="hidden md:flex space-x-8 ml-16">
+        {/* PC: メニューを右寄せ */}
+        <nav className="hidden md:flex flex-1 justify-end space-x-16">
           {navItems.map((item) => {
             const isActive =
               item.href === "/"
@@ -51,6 +47,7 @@ export default function Header() {
         <button
           className="md:hidden text-2xl absolute right-4 top-1/2 -translate-y-1/2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="メニューを開く"
         >
           ☰
         </button>
