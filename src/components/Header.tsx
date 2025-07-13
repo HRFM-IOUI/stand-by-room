@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -17,12 +18,25 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 left-0 w-full bg-white z-50 shadow-sm">
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* ロゴ */}
-        <div className="text-xl font-bold">STAND</div>
+      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between relative">
+
+        {/* PC用テキストロゴ */}
+        <div className="text-xl font-bold hidden md:block">STAND</div>
+
+        {/* モバイル中央ロゴ画像 */}
+        <div className="flex-1 flex justify-center md:hidden">
+          <Image
+            src="/stand.webp"   // public/stand.webp
+            alt="STAND Logo"
+            width={90}
+            height={28}
+            className="h-7 w-auto object-contain"
+            priority
+          />
+        </div>
 
         {/* PCナビ */}
-        <nav className="hidden md:flex space-x-8">
+        <nav className="hidden md:flex space-x-8 flex-1 justify-center">
           {navItems.map((item) => {
             const isActive =
               item.href === "/"
