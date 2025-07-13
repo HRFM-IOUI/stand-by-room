@@ -15,7 +15,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 left-0 w-full bg-white z-50 shadow-sm">
+    <header className="sticky top-0 left-0 w-full bg-white z-50 ">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center relative">
         
         {/* PC: メニューを右寄せ */}
