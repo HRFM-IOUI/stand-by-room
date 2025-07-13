@@ -76,7 +76,7 @@ export default function Header() {
               type="button"
             >×</button>
             {/* メニューリンク */}
-            {navItems.map((item, idx) => {
+            {navItems.map((item) => {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
