@@ -4,15 +4,15 @@ import { motion } from "framer-motion";
 export default function Access() {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.1, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="relative py-14 px-6 max-w-4xl mx-auto"
+      className="max-w-2xl mx-auto px-2"
     >
-      <hr className="mb-8 border-gray-200" />
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
-        <h2 className="italic text-3xl md:text-4xl font-serif font-bold tracking-wide mb-4 md:mb-0 text-left">
+      <hr className="mb-6 border-gray-200" />
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-4">
+        <h2 className="italic text-2xl md:text-3xl font-serif font-bold mb-3 md:mb-0 text-left">
           Access
         </h2>
         <a
@@ -24,12 +24,10 @@ export default function Access() {
           Open Google Map
         </a>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
-        <span className="text-lg md:text-xl font-semibold italic text-gray-800 text-left">
-          4-4-21 NISHIOGI, SUGINAMI, Tokyo, Japan
-        </span>
-      </div>
-      <hr className="mb-8 border-gray-200" />
+      <span className="block text-base md:text-lg font-semibold italic text-gray-800 mb-1">
+        4-4-21 NISHIOGI, SUGINAMI, Tokyo, Japan
+      </span>
+      <hr className="mt-6 border-gray-200" />
     </motion.section>
   );
 }

@@ -1,10 +1,9 @@
 "use client";
-
 import Image from "next/image";
 import Greeting from "@/components/Greeting";
 import Access from "@/components/Access";
 import SocialLinks from "@/components/SocialLinks";
-import Footer from "@/components/Footer"; // ←追加！
+import Footer from "@/components/Footer";
 
 export default function HomePage() {
   return (
@@ -14,7 +13,8 @@ export default function HomePage() {
       <section
         className="
           flex justify-center px-2
-          mt-[-40px] md:mt-[-72px]
+          mt-[-24px] md:mt-[-48px]
+          pt-6 md:pt-10
         "
       >
         <Image
@@ -30,18 +30,18 @@ export default function HomePage() {
       {/* キャッチ・詩的フレーズ */}
       <Greeting />
 
-      {/* アクセス（Google Map/見出しのみ） */}
-      <Access />
-
-      {/* ソーシャルリンク */}
-      <div className="flex justify-center mt-6">
-        <SocialLinks />
+      {/* アクセス（Google Map/住所＋Instagram） */}
+      <div className="mt-4 mb-2">
+        <Access />
+        <div className="flex justify-center mt-2">
+          <SocialLinks />
+        </div>
       </div>
 
       {/* お知らせセクション */}
-      <section className="bg-gray-100 py-10 px-6">
-        <h2 className="text-xl font-semibold mb-4 text-left md:text-center">お知らせ</h2>
-        <ul className="space-y-4 text-sm md:text-base">
+      <section className="bg-gray-100 py-8 px-4 mt-4">
+        <h2 className="text-xl font-semibold mb-3 text-left md:text-center">お知らせ</h2>
+        <ul className="space-y-2 text-sm md:text-base">
           <li className="border-b pb-2">・2025年8月 NEW OPEN予定！</li>
           <li className="border-b pb-2">・ご予約はLINEより受け付けております。</li>
           <li className="border-b pb-2">・スタッフ情報などは随時更新いたします。</li>
@@ -60,7 +60,7 @@ export default function HomePage() {
         </a>
       </div>
 
-      {/* フッターはFooterコンポーネントで統一 */}
+      {/* 最下部フッター */}
       <Footer />
     </main>
   );
