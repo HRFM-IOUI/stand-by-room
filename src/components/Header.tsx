@@ -17,9 +17,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 left-0 w-full bg-white z-50 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center relative">
-        {/* スマホ：中央テキストロゴ */}
-        <div className="md:hidden flex-1 text-center text-xl font-bold select-none">STAND</div>
-
+        
         {/* PC: メニューを右寄せ */}
         <nav className="hidden md:flex flex-1 justify-end space-x-16">
           {navItems.map((item) => {
