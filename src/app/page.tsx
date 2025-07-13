@@ -8,7 +8,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-gray-900 font-sans relative">
       {/* Heroバナー画像 */}
-      <section className="flex justify-center py-6 px-2">
+      <section className="flex justify-center px-2 mt-[-24px] md:mt-[-40px]">
         <Image
           src="/stand.png"
           alt="STAND Hero"
