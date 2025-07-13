@@ -13,7 +13,7 @@ export default function HomePage() {
       <section
         className="flex justify-center px-2
           mt-[-24px] md:mt-[-32px]  // モバイル約1.5cm, PC約2cmマイナス
-          pt-6"
+          pt-10"
       >
         <Image
           src="/stand.png"
