@@ -16,10 +16,10 @@ export default function Greeting() {
       <div className="text-base md:text-lg italic text-gray-600 tracking-widest mb-3">
         HAIR &nbsp; FASHION &nbsp; MUSIC
       </div>
-      <p className="text-center text-sm md:text-base text-gray-500 leading-relaxed italic max-w-xl">
+      <p>
         Giving beauty shape through styling hair, painting, creating music.<br />
-        In the scope of the darkest depths of the ocean and the mountain's sea of trees, such actions are insignificant.<br />
-        But with man's admiration and appreciation, meaning is found for the first time.<br />
+        In the scope of the darkest depths of the ocean and the mountain&apos;s sea of trees, such actions are insignificant.<br />
+        But with man&apos;s admiration and appreciation, meaning is found for the first time.<br />
         <span className="block mt-2">Cyndy so loud.</span>
       </p>
     </motion.section>

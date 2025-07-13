@@ -28,7 +28,7 @@ export default function Access() {
       </div>
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-10">
         <span className="text-lg md:text-xl font-semibold italic text-gray-800 text-left">
-          2-6-13 Yutenji, Meguro-ku, Tokyo, Japan
+          4-4-21 NISHIOGI, SUGINAMI, Tokyo, Japan
         </span>
       </div>
       <hr className="mb-8 border-gray-200" />
@@ -50,13 +50,13 @@ export default function Access() {
         <div className="text-right md:text-right space-y-1">
           <div className="italic text-base text-gray-600">Hour 11:00 - 20:00</div>
           <a
-            href="tel:03-6303-1363"
+            href="tel:090-4226-1163"
             className="text-2xl md:text-3xl font-serif font-semibold tracking-widest text-gray-800 hover:text-rose-400 transition"
           >
-            03-6303-1363
+            090-4226-1163
           </a>
           <div className="text-xs text-gray-500 mt-1 italic">
-            Copyrights © darlin. All Rights Reserved.
+            Copyrights © STAND. All Rights Reserved.
           </div>
         </div>
       </div>
