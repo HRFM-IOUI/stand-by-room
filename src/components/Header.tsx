@@ -16,6 +16,7 @@ export default function Header() {
 
   // 背景タップで閉じる
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // 背景（黒い部分）のみで閉じる
     if (e.target === e.currentTarget) setIsOpen(false);
   };
 
@@ -46,8 +47,8 @@ export default function Header() {
         </nav>
         {/* ハンバーガーはスマホ右端 */}
         <button
-          className="md:hidden text-2xl absolute right-4 top-1/2 -translate-y-1/2 focus:outline-none"
-          onClick={() => setIsOpen(!isOpen)}
+          className="md:hidden text-2xl absolute right-4 top-1/2 -translate-y-1/2 focus:outline-none z-50"
+          onClick={() => setIsOpen(true)}
           aria-label="メニューを開く"
         >
           ☰
@@ -57,21 +58,22 @@ export default function Header() {
       {/* クリアドロワー */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-[3.5px] flex justify-end md:hidden transition-all"
+          className="fixed inset-0 z-[9999] bg-black/30 backdrop-blur-[3.5px] flex justify-end md:hidden transition-all"
           onClick={handleBackdropClick}
         >
           <nav
             className="relative h-full w-[84vw] max-w-xs bg-white/40 backdrop-blur-xl shadow-2xl rounded-l-3xl p-8 flex flex-col space-y-4 animate-clearDrawer"
             style={{
-              boxShadow: "0 6px 48px 0 rgba(234,120,146,0.13)"
+              boxShadow: "0 6px 48px 0 rgba(234,120,146,0.13)",
             }}
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()} // ドロワー内クリックは閉じない
           >
             {/* 閉じるボタン */}
             <button
-              className="absolute right-3 top-3 bg-white/60 backdrop-blur rounded-full shadow hover:bg-rose-100 w-9 h-9 flex items-center justify-center text-2xl"
+              className="absolute right-3 top-3 bg-white/60 backdrop-blur rounded-full shadow hover:bg-rose-100 w-9 h-9 flex items-center justify-center text-2xl z-10"
               onClick={() => setIsOpen(false)}
               aria-label="メニューを閉じる"
+              type="button"
             >×</button>
             {/* メニューリンク */}
             {navItems.map((item, idx) => {
