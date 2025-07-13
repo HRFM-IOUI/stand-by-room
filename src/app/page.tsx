@@ -1,11 +1,10 @@
-// app/page.tsx
-
 "use client";
 
 import Image from "next/image";
 import Greeting from "@/components/Greeting";
 import Access from "@/components/Access";
 import SocialLinks from "@/components/SocialLinks";
+import Footer from "@/components/Footer"; // ←追加！
 
 export default function HomePage() {
   return (
@@ -15,7 +14,7 @@ export default function HomePage() {
       <section
         className="
           flex justify-center px-2
-          mt-[-40px] md:mt-[-72px]   // スマホ約1.5cm、PC約2.5cm上に詰める
+          mt-[-40px] md:mt-[-72px]
         "
       >
         <Image
@@ -31,7 +30,7 @@ export default function HomePage() {
       {/* キャッチ・詩的フレーズ */}
       <Greeting />
 
-      {/* アクセス（Google Map/住所/TEL/営業時間など） */}
+      {/* アクセス（Google Map/見出しのみ） */}
       <Access />
 
       {/* ソーシャルリンク */}
@@ -61,10 +60,8 @@ export default function HomePage() {
         </a>
       </div>
 
-      {/* コピーライト */}
-      <footer className="text-center text-xs text-gray-500 py-10 mt-24">
-        &copy; {new Date().getFullYear()} STAND. All rights reserved.
-      </footer>
+      {/* フッターはFooterコンポーネントで統一 */}
+      <Footer />
     </main>
   );
 }

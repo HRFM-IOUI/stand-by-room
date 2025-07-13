@@ -1,3 +1,4 @@
+// src/components/Access.tsx
 "use client";
 import { motion } from "framer-motion";
 
@@ -11,7 +12,7 @@ export default function Access() {
       className="relative py-14 px-6 max-w-4xl mx-auto"
     >
       <hr className="mb-8 border-gray-200" />
-      {/* Accessタイトルと住所 */}
+      {/* AccessタイトルとGoogle Mapだけ */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
         <h2 className="italic text-3xl md:text-4xl font-serif font-bold tracking-wide mb-4 md:mb-0 text-left">
           Access
@@ -25,29 +26,7 @@ export default function Access() {
           Open Google Map
         </a>
       </div>
-      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-10">
-        <span className="text-lg md:text-xl font-semibold italic text-gray-800 text-left">
-          4-4-21 NISHIOGI, SUGINAMI, Tokyo, Japan
-        </span>
-      </div>
       <hr className="mb-8 border-gray-200" />
-
-      {/* 下部：営業時間・TEL／コピーライトのみ */}
-      <div className="flex flex-col md:flex-row md:justify-between items-center gap-6">
-        {/* 営業時間・電話番号 */}
-        <div className="text-right md:text-right space-y-1">
-          <div className="italic text-base text-gray-600">Hour 11:00 - 20:00</div>
-          <a
-            href="tel:090-4226-1163"
-            className="text-2xl md:text-3xl font-serif font-semibold tracking-widest text-gray-800 hover:text-rose-400 transition"
-          >
-            090-4226-1163
-          </a>
-          <div className="text-xs text-gray-500 mt-1 italic">
-            Copyrights © STAND. All Rights Reserved.
-          </div>
-        </div>
-      </div>
     </motion.section>
   );
 }
