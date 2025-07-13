@@ -10,7 +10,7 @@ export default function HomePage() {
       {/* Heroバナー画像 */}
       <section className="flex justify-center py-6 px-2">
         <Image
-          src="/hero-placeholder.jpg"
+          src="/stand.webp"
           alt="STAND Hero"
           width={900}
           height={600}

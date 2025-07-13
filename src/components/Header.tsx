@@ -23,18 +23,7 @@ export default function Header() {
         {/* PC用テキストロゴ */}
         <div className="text-xl font-bold hidden md:block">STAND</div>
 
-        {/* モバイル中央ロゴ画像 */}
-        <div className="flex-1 flex justify-center md:hidden">
-          <Image
-            src="/stand.webp"   // public/stand.webp
-            alt="STAND Logo"
-            width={90}
-            height={28}
-            className="h-7 w-auto object-contain"
-            priority
-          />
-        </div>
-
+        
         {/* PCナビ */}
         <nav className="hidden md:flex space-x-8 flex-1 justify-center">
           {navItems.map((item) => {
