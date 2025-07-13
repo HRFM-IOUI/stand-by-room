@@ -25,7 +25,7 @@ function ModalParticleBG() {
   useEffect(() => {
     const canvas = canvasRef.current!;
     const ctx = canvas.getContext("2d")!;
-    let particles = Array.from({ length: 24 }, () => ({
+    const particles = Array.from({ length: 24 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       r: 1.3 + Math.random() * 2.7,
@@ -35,7 +35,7 @@ function ModalParticleBG() {
     let raf: number;
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
+      for (const p of particles) {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
         ctx.fillStyle = "rgba(234,120,146,0.11)";
