@@ -14,10 +14,14 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
+  // 背景タップで閉じる
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) setIsOpen(false);
+  };
+
   return (
-    <header className="sticky top-0 left-0 w-full bg-white z-50 ">
+    <header className="sticky top-0 left-0 w-full bg-white z-50">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center relative">
-        
         {/* PC: メニューを右寄せ */}
         <nav className="hidden md:flex flex-1 justify-end space-x-16">
           {navItems.map((item) => {
@@ -40,7 +44,6 @@ export default function Header() {
             );
           })}
         </nav>
-
         {/* ハンバーガーはスマホ右端 */}
         <button
           className="md:hidden text-2xl absolute right-4 top-1/2 -translate-y-1/2 focus:outline-none"
@@ -51,11 +54,27 @@ export default function Header() {
         </button>
       </div>
 
-      {/* モバイルメニュー */}
+      {/* クリアドロワー */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-md">
-          <nav className="flex flex-col px-4 py-2 space-y-2">
-            {navItems.map((item) => {
+        <div
+          className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-[3.5px] flex justify-end md:hidden transition-all"
+          onClick={handleBackdropClick}
+        >
+          <nav
+            className="relative h-full w-[84vw] max-w-xs bg-white/40 backdrop-blur-xl shadow-2xl rounded-l-3xl p-8 flex flex-col space-y-4 animate-clearDrawer"
+            style={{
+              boxShadow: "0 6px 48px 0 rgba(234,120,146,0.13)"
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* 閉じるボタン */}
+            <button
+              className="absolute right-3 top-3 bg-white/60 backdrop-blur rounded-full shadow hover:bg-rose-100 w-9 h-9 flex items-center justify-center text-2xl"
+              onClick={() => setIsOpen(false)}
+              aria-label="メニューを閉じる"
+            >×</button>
+            {/* メニューリンク */}
+            {navItems.map((item, idx) => {
               const isActive =
                 item.href === "/"
                   ? pathname === "/"
@@ -64,11 +83,9 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`py-2 border-b border-gray-200 ${
-                    isActive
-                      ? "text-rose-400 font-bold"
-                      : "text-gray-500 hover:text-gray-700"
-                  }`}
+                  className={`w-full text-lg font-medium py-2 px-4 text-center rounded transition
+                    ${isActive ? "text-rose-400 font-bold" : "text-gray-600 hover:bg-rose-50"}
+                  `}
                   onClick={() => setIsOpen(false)}
                 >
                   {item.name}
@@ -76,6 +93,20 @@ export default function Header() {
               );
             })}
           </nav>
+          {/* CSSアニメーション */}
+          <style jsx global>{`
+            .animate-clearDrawer {
+              animation: clearDrawerOpen .42s cubic-bezier(.63,1.6,.43,1.01) forwards;
+              transform: translateX(110%) scale(0.98);
+              opacity: 0;
+            }
+            @keyframes clearDrawerOpen {
+              to {
+                transform: none;
+                opacity: 1;
+              }
+            }
+          `}</style>
         </div>
       )}
     </header>
