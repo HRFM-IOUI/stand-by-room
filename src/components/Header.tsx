@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 
+// --- ナビアイテム ---
 const navItems = [
   { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
@@ -19,23 +19,13 @@ export default function Header() {
   return (
     <header className="sticky top-0 left-0 w-full bg-white z-50 shadow-sm">
       <div className="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between relative">
-        {/* ===== PC用テキストロゴ ===== */}
-        <div className="text-xl font-bold hidden md:block">STAND</div>
-
-        {/* ===== モバイル用ロゴ画像（中央だけどabsoluteで重ねる） ===== */}
-        <div className="absolute left-1/2 top-1/2 md:hidden -translate-x-1/2 -translate-y-1/2">
-          <Image
-            src="/stand.webp"
-            alt="STAND Logo"
-            width={56}   // お好みで微調整
-            height={24}
-            className="h-8 w-auto object-contain"
-            priority
-          />
+        {/* スマホ：中央にテキストロゴ */}
+        <div className="text-xl font-bold mx-auto md:mx-0 md:block">
+          STAND
         </div>
 
-        {/* ===== PCナビ ===== */}
-        <nav className="hidden md:flex space-x-8 flex-1 justify-center">
+        {/* PCナビ：左から2cm(約32px=8の4倍=32px=ml-8くらい)右寄せ */}
+        <nav className="hidden md:flex space-x-8 ml-16">
           {navItems.map((item) => {
             const isActive =
               item.href === "/"
@@ -57,16 +47,16 @@ export default function Header() {
           })}
         </nav>
 
-        {/* ===== ハンバーガー（右端） ===== */}
+        {/* ハンバーガーはスマホ右端 */}
         <button
-          className="md:hidden text-2xl focus:outline-none"
+          className="md:hidden text-2xl absolute right-4 top-1/2 -translate-y-1/2 focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
         </button>
       </div>
 
-      {/* ===== モバイルメニュー ===== */}
+      {/* モバイルメニュー */}
       {isOpen && (
         <div className="md:hidden bg-white shadow-md">
           <nav className="flex flex-col px-4 py-2 space-y-2">
