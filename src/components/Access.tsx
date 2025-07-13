@@ -1,4 +1,3 @@
-// src/components/Access.tsx
 "use client";
 import { motion } from "framer-motion";
 
@@ -12,7 +11,6 @@ export default function Access() {
       className="relative py-14 px-6 max-w-4xl mx-auto"
     >
       <hr className="mb-8 border-gray-200" />
-      {/* AccessタイトルとGoogle Mapだけ */}
       <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8">
         <h2 className="italic text-3xl md:text-4xl font-serif font-bold tracking-wide mb-4 md:mb-0 text-left">
           Access
@@ -25,6 +23,11 @@ export default function Access() {
         >
           Open Google Map
         </a>
+      </div>
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+        <span className="text-lg md:text-xl font-semibold italic text-gray-800 text-left">
+          4-4-21 NISHIOGI, SUGINAMI, Tokyo, Japan
+        </span>
       </div>
       <hr className="mb-8 border-gray-200" />
     </motion.section>
