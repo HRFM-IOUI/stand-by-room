@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import Greeting from "@/components/Greeting";
 import Access from "@/components/Access";
@@ -8,15 +9,12 @@ import Footer from "@/components/Footer";
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-gray-900 font-sans relative">
-
-      {/* Heroバナー画像（余白をしっかり詰める） */}
-      <section
-        className="
-          flex justify-center px-2
-          mt-[-24px] md:mt-[-48px]
-          pt-6 md:pt-10
-        "
-      >
+      {/* Heroバナー画像（上下余白をしっかり詰める） */}
+      <section className="
+        flex justify-center px-2
+        mt-[-72px] md:mt-[-112px]  /* スマホ約2cm、PC約3cm上に詰める */
+        pt-4
+      ">
         <Image
           src="/stand.png"
           alt="STAND Hero"
@@ -28,20 +26,22 @@ export default function HomePage() {
       </section>
 
       {/* キャッチ・詩的フレーズ */}
-      <Greeting />
+      <section className="mt-6 mb-6">
+        <Greeting />
+      </section>
 
-      {/* アクセス（Google Map/住所＋Instagram） */}
-      <div className="mt-4 mb-2">
+      {/* Access（住所＋地図）＋ ソーシャル */}
+      <section className="py-4">
         <Access />
-        <div className="flex justify-center mt-2">
+        <div className="flex justify-center mt-4 mb-2">
           <SocialLinks />
         </div>
-      </div>
+      </section>
 
       {/* お知らせセクション */}
-      <section className="bg-gray-100 py-8 px-4 mt-4">
-        <h2 className="text-xl font-semibold mb-3 text-left md:text-center">お知らせ</h2>
-        <ul className="space-y-2 text-sm md:text-base">
+      <section className="bg-gray-100 py-4 px-6">
+        <h2 className="text-xl font-semibold mb-4 text-left md:text-center">お知らせ</h2>
+        <ul className="space-y-4 text-sm md:text-base">
           <li className="border-b pb-2">・2025年8月 NEW OPEN予定！</li>
           <li className="border-b pb-2">・ご予約はLINEより受け付けております。</li>
           <li className="border-b pb-2">・スタッフ情報などは随時更新いたします。</li>
@@ -60,7 +60,7 @@ export default function HomePage() {
         </a>
       </div>
 
-      {/* 最下部フッター */}
+      {/* フッター */}
       <Footer />
     </main>
   );

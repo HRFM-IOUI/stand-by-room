@@ -14,12 +14,12 @@ export default function Greeting() {
         WE ARE STAND.
       </h1>
       <div className="text-base md:text-lg italic text-gray-600 tracking-widest mb-3">
-        HAIR &nbsp; FASHION &nbsp; MUSIC
+        HAIR &nbsp; FASHION &nbsp; MUSIC　←これ考えて教えて
       </div>
       <p>
         Giving beauty shape through styling hair, painting, creating music.<br />
         In the scope of the darkest depths of the ocean and the mountain&apos;s sea of trees, such actions are insignificant.<br />
-        But with man&apos;s admiration and appreciation, meaning is found for the first time.<br />
+        But with man&apos;s admiration and appreciation, meaning is found for the first time.←上に同じく<br />
         <span className="block mt-2">Cyndy so loud.</span>
       </p>
     </motion.section>
