@@ -1,3 +1,5 @@
+// app/page.tsx
+
 "use client";
 
 import Image from "next/image";
@@ -9,11 +11,12 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-gray-900 font-sans relative">
 
-      {/* Heroバナー画像（上に移動・余白調整） */}
+      {/* Heroバナー画像（余白をしっかり詰める） */}
       <section
-        className="flex justify-center px-2
-          mt-[-24px] md:mt-[-32px]  // モバイル約1.5cm, PC約2cmマイナス
-          pt-10"
+        className="
+          flex justify-center px-2
+          mt-[-40px] md:mt-[-72px]   // スマホ約1.5cm、PC約2.5cm上に詰める
+        "
       >
         <Image
           src="/stand.png"
@@ -31,7 +34,7 @@ export default function HomePage() {
       {/* アクセス（Google Map/住所/TEL/営業時間など） */}
       <Access />
 
-      {/* ソーシャルリンク（QR＋Instagram） */}
+      {/* ソーシャルリンク */}
       <div className="flex justify-center mt-6">
         <SocialLinks />
       </div>
