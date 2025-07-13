@@ -7,7 +7,7 @@ const navItems = [
   { name: "Home", href: "/" },
   { name: "Menu", href: "/menu" },
   { name: "Staff", href: "/staff" },
-  { name: "Map", href: "/map" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
