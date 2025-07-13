@@ -18,13 +18,14 @@ export default function Access() {
           Access
         </h2>
         <a
-          href="https://www.google.co.jp/maps/place/darlin./@35.6369939,139.6934662,15z"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="italic underline text-base md:text-lg text-right hover:text-rose-400 transition"
-        >
-          Open Google Map
-        </a>
+  href="https://www.google.com/maps/search/?api=1&query=4-4-21+NISHIOGI,+SUGINAMI,+Tokyo,+Japan"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="italic underline text-base md:text-lg text-right hover:text-rose-400 transition"
+>
+  Open Google Map
+</a>
+
       </div>
       <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-10">
         <span className="text-lg md:text-xl font-semibold italic text-gray-800 text-left">
