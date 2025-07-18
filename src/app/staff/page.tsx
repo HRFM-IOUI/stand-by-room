@@ -7,31 +7,52 @@ export default function StaffPage() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.4, ease: "easeOut" }}
-      className="min-h-[75vh] flex flex-col items-center justify-center pt-24 pb-20 bg-white"
+      className="min-h-[75vh] flex flex-col items-center justify-center pt-20 pb-20 bg-white"
+      style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
     >
       <div className="w-full max-w-xl mx-auto text-center">
         {/* STAFFタイトル */}
-        <h1 className="text-5xl md:text-7xl font-serif italic font-bold mb-3 tracking-wide">
+        <h1
+          className="text-4xl md:text-6xl font-bold mb-3 tracking-wider"
+          style={{
+            color: "#8DA399",
+            fontFamily: "Helvetica, Arial, sans-serif",
+            letterSpacing: "0.14em",
+          }}
+        >
           STAFF
         </h1>
         {/* サブタイトル */}
-        <div className="italic text-xl text-gray-500 mb-8">Stylist</div>
-        
+        <div
+          className="italic text-lg mb-7"
+          style={{ color: "#8DA399", fontWeight: 600, letterSpacing: "0.1em" }}
+        >
+          Stylist
+        </div>
+
         {/* スタッフ名 */}
-        <div className="mb-4">
-          <span className="text-3xl md:text-5xl font-bold font-serif tracking-widest text-gray-900">
+        <div className="mb-5">
+          <span
+            className="text-2xl md:text-4xl font-bold tracking-widest"
+            style={{
+              color: "#333",
+              fontFamily: "Helvetica, Arial, sans-serif",
+              letterSpacing: "0.16em",
+            }}
+          >
             YOHEI KISHIDA
           </span>
         </div>
-        
-        {/* Instagramワンポイント（必要なら） */}
-        <div className="flex justify-center gap-3 mt-2 mb-6">
+
+        {/* Instagramワンポイント */}
+        <div className="flex justify-center gap-3 mt-1 mb-6">
           <a
             href="https://www.instagram.com/stand_hair"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-gray-500 hover:text-rose-400 text-2xl transition"
+            className="inline-block text-[#8DA399] hover:text-rose-400 text-2xl transition"
             aria-label="Instagram"
+            style={{ fontSize: "2rem" }}
           >
             {/* Instagramアイコン */}
             <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
@@ -41,9 +62,12 @@ export default function StaffPage() {
             </svg>
           </a>
         </div>
-        
-        {/* 今後コメントや一言/画像を追加する欄 */}
-        <p className="mt-8 text-gray-500 text-base italic">
+
+        {/* コメント欄 */}
+        <p
+          className="mt-7 text-gray-500 text-sm italic"
+          style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
+        >
           Coming soon: more about YOHEI’s story and philosophy.
         </p>
       </div>

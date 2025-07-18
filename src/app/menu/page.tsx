@@ -35,10 +35,8 @@ const menuSections = [
   }
 ];
 
-// カスタムイージング配列（easeOutっぽい動き）
 const EASING: [number, number, number, number] = [0.33, 1, 0.68, 1];
 
-// セクション用motionバリアント
 const sectionVariants = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
@@ -70,15 +68,17 @@ export default function MenuPage() {
       initial={{ opacity: 0, y: 28 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.5, ease: EASING }}
-      className="min-h-screen bg-white text-gray-900 font-sans"
+      className="min-h-screen bg-white text-gray-900"
+      style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
     >
-      <div className="max-w-2xl mx-auto pt-12 pb-8 px-4">
+      <div className="max-w-2xl mx-auto pt-3 md:pt-12 pb-8 px-4">
         {/* タイトル */}
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.25, ease: EASING }}
-          className="text-4xl md:text-5xl font-serif italic font-bold text-center mb-12 tracking-wide"
+          className="text-4xl md:text-5xl font-bold text-center mb-12 tracking-wide"
+          style={{ color: "#8DA399" }}
         >
           Menu
         </motion.h1>
@@ -96,21 +96,22 @@ export default function MenuPage() {
           >
             {/* セクションタイトル */}
             <motion.h2
-              className="text-2xl md:text-3xl font-serif italic mb-4 tracking-wide text-rose-400"
+              className="text-2xl md:text-3xl font-bold mb-4 tracking-wide"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15 + idx * 0.12, ease: EASING }}
+              style={{ color: "#8DA399" }}
             >
               {section.title}
             </motion.h2>
 
             {/* 区切り線アニメ */}
             <motion.hr
-              className="mb-6 border-black border-t-2 origin-left"
+              className="mb-6 border-t-2 origin-left"
+              style={{ borderColor: "#8DA399", transformOrigin: "left" }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 0.9, delay: 0.22 + idx * 0.13, ease: EASING }}
-              style={{ transformOrigin: "left" }}
             />
 
             {/* メニューリスト */}
@@ -126,17 +127,23 @@ export default function MenuPage() {
                   key={item.name}
                   variants={itemVariants}
                   className="flex justify-between items-end px-2 md:px-10"
-                  whileHover={{ scale: 1.05, color: "#f43f5e" }}
+                  whileHover={{ scale: 1.05, color: "#8DA399" }}
+                  style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
                 >
-                  <span className="italic text-lg md:text-2xl">{item.name}</span>
-                  <span className="text-lg md:text-2xl font-serif font-semibold">{item.price}</span>
+                  <span className="text-lg md:text-2xl">{item.name}</span>
+                  <span
+                    className="text-lg md:text-2xl font-semibold"
+                    style={{ color: "#8DA399" }}
+                  >
+                    {item.price}
+                  </span>
                 </motion.li>
               ))}
             </motion.ul>
           </motion.section>
         ))}
 
-        <div className="text-xs text-gray-400 mt-10 text-center">
+        <div className="text-xs text-gray-400 mt-10 text-center" style={{ fontFamily: "Helvetica, Arial, sans-serif" }}>
           ※表示価格は税込・カットブロー込み。<br />
           施術により価格が前後する場合があります。
         </div>
