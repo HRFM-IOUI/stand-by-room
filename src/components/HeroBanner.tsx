@@ -12,7 +12,6 @@ const DISSOLVE_TIME = 2200;
 export default function HeroBanner() {
   const [current, setCurrent] = useState(0);
   const [next, setNext] = useState<number | null>(null);
-  const [progress, setProgress] = useState<number>(1);
   const [allLoaded, setAllLoaded] = useState(false);
   const [showImg, setShowImg] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -43,13 +42,11 @@ export default function HeroBanner() {
   useEffect(() => {
     if (next === null || showImg) return;
     let start: number | null = null;
-    setProgress(0);
 
     function animate(now: number) {
       if (!start) start = now;
       let t = (now - start) / DISSOLVE_TIME;
       if (t > 1) t = 1;
-      setProgress(t);
 
       const canvas = canvasRef.current;
       const ctx = canvas?.getContext("2d");
@@ -70,7 +67,6 @@ export default function HeroBanner() {
       } else {
         setCurrent(next!);
         setNext(null);
-        setProgress(1);
       }
     }
     rafRef.current = requestAnimationFrame(animate);

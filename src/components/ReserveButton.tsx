@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
-
 export default function ReserveButton() {
   return (
-    <div className="fixed bottom-4 right-4 z-50 pointer-events-none">
+    <div className="fixed bottom-4 left-0 w-full flex justify-center z-50 pointer-events-none">
       <a
         href="https://lin.ee/xxxxxx"
         target="_blank"
