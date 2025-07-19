@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Footer from "@/components/Footer";
 
 const menuSections = [
+  // ...（省略：中身はそのまま）...
   {
     title: "Cut",
     items: [
@@ -77,7 +78,7 @@ export default function MenuPage() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.1, delay: 0.25, ease: EASING }}
-          className="text-4xl md:text-5xl font-bold text-center mb-12 tracking-wide"
+          className="text-3xl md:text-4xl font-bold text-center mb-10 tracking-wide"
           style={{ color: "#8DA399" }}
         >
           Menu
@@ -92,11 +93,11 @@ export default function MenuPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
-            className="mb-12"
+            className="mb-10"
           >
             {/* セクションタイトル */}
             <motion.h2
-              className="text-2xl md:text-3xl font-bold mb-4 tracking-wide"
+              className="text-xl md:text-2xl font-bold mb-3 tracking-wide"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.15 + idx * 0.12, ease: EASING }}
@@ -107,7 +108,7 @@ export default function MenuPage() {
 
             {/* 区切り線アニメ */}
             <motion.hr
-              className="mb-6 border-t-2 origin-left"
+              className="mb-5 border-t-2 origin-left"
               style={{ borderColor: "#8DA399", transformOrigin: "left" }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -120,7 +121,7 @@ export default function MenuPage() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-4"
             >
               {section.items.map((item) => (
                 <motion.li
@@ -130,9 +131,9 @@ export default function MenuPage() {
                   whileHover={{ scale: 1.05, color: "#8DA399" }}
                   style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
                 >
-                  <span className="text-lg md:text-2xl">{item.name}</span>
+                  <span className="text-base md:text-lg">{item.name}</span>
                   <span
-                    className="text-lg md:text-2xl font-semibold"
+                    className="text-base md:text-lg font-semibold"
                     style={{ color: "#8DA399" }}
                   >
                     {item.price}
@@ -143,7 +144,7 @@ export default function MenuPage() {
           </motion.section>
         ))}
 
-        <div className="text-xs text-gray-400 mt-10 text-center" style={{ fontFamily: "Helvetica, Arial, sans-serif" }}>
+        <div className="text-xs text-gray-400 mt-8 text-center" style={{ fontFamily: "Helvetica, Arial, sans-serif" }}>
           ※表示価格は税込・カットブロー込み。<br />
           施術により価格が前後する場合があります。
         </div>

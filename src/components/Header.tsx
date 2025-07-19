@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FaGripVertical } from "react-icons/fa";  // ← 縦グリップ
 
 const navItems = [
   { name: "Home", href: "/" },
@@ -13,7 +14,6 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // モーダル外クリックで閉じる（スマホ用）
   const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) setIsOpen(false);
   };
@@ -47,27 +47,35 @@ export default function Header() {
             );
           })}
         </nav>
-        {/* スマホ用ハンバーガー */}
+        {/* スマホ用リークト（縦グリップ）アイコン・PCでは消える */}
         <button
-          className="md:hidden text-2xl focus:outline-none"
+          className="block md:hidden focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="メニューを開く"
-          style={{ color: "#8DA399" }}
+          style={{
+            width: 40,
+            height: 40,
+            // displayは絶対にここに書かない！！（Tailwindのクラスで管理する！）
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 0,
+            background: "transparent",
+            border: "none",
+          }}
         >
-          ☰
+          <FaGripVertical size={24} color="#000" />
         </button>
       </div>
       {/* モバイルモーダルメニュー */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 bg-black/30 flex items-start justify-center"
+          className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-start justify-center"
           onClick={handleBackdropClick}
         >
           <div
-            className="mt-24 w-[90vw] max-w-xs rounded-2xl bg-white shadow-xl flex flex-col items-center py-8 px-6 relative"
+            className="mt-24 w-[90vw] max-w-xs rounded-2xl bg-white/80 backdrop-blur-md shadow-2xl flex flex-col items-center py-8 px-6 relative"
             style={{ fontFamily: "Helvetica, Arial, sans-serif" }}
           >
-            {/* ロゴや見せ名なし、ナビのみ */}
             <div className="flex flex-col items-center w-full space-y-3">
               {navItems.map((item) => {
                 const isActive =
@@ -82,7 +90,7 @@ export default function Header() {
                       ${
                         isActive
                           ? "text-[#8DA399] font-bold"
-                          : "text-gray-600 hover:text-[#8DA399]"
+                          : "text-gray-700 hover:text-[#8DA399]"
                       }`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -95,7 +103,12 @@ export default function Header() {
               className="absolute right-4 top-4 w-9 h-9 flex items-center justify-center text-2xl"
               onClick={() => setIsOpen(false)}
               aria-label="メニューを閉じる"
-              style={{ color: "#8DA399", background: "#f5f8f7", borderRadius: "9999px" }}
+              style={{
+                color: "#8DA399",
+                background: "#f5f8f7",
+                borderRadius: "9999px",
+                boxShadow: "0 1px 8px rgba(0,0,0,0.08)",
+              }}
             >
               ×
             </button>

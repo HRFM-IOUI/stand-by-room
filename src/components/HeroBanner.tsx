@@ -8,16 +8,29 @@ const images = [
 
 const DISPLAY_TIME = 4500;
 const DISSOLVE_TIME = 2200;
+const ASPECT_RATIO_W = 16;
+const ASPECT_RATIO_H = 8.5;
 
 export default function HeroBanner() {
   const [current, setCurrent] = useState(0);
   const [next, setNext] = useState<number | null>(null);
   const [allLoaded, setAllLoaded] = useState(false);
   const [showImg, setShowImg] = useState(true);
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const imgsRef = useRef<(HTMLImageElement | null)[]>([]);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const rafRef = useRef<number | null>(null);
+
+  // ★ スマホ判定
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+  const borderRadius = isMobile ? "0" : "0.75rem";
 
   // 画像プリロード
   useEffect(() => {
@@ -53,9 +66,14 @@ export default function HeroBanner() {
       const img1 = imgsRef.current[current];
       const img2 = imgsRef.current[next!];
       const [w, h] = getCanvasSize();
+      const dpr = window.devicePixelRatio || 1;
       if (canvas && ctx && img1 && img2) {
-        canvas.width = w;
-        canvas.height = h;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
         ctx.globalAlpha = 1 - t;
         ctx.drawImage(img1, 0, 0, w, h);
         ctx.globalAlpha = t;
@@ -86,10 +104,17 @@ export default function HeroBanner() {
     };
   }, [current, next, showImg]);
 
+  // 画面幅ピッタリ＋比率固定で高さ算出
   function getCanvasSize() {
     if (typeof window === "undefined") return [1440, 340];
-    if (window.innerWidth < 640) return [window.innerWidth * 0.91, window.innerWidth * 0.42];
-    return [1440, 340];
+    if (window.innerWidth < 640) {
+      const width = window.innerWidth;
+      const height = width * ASPECT_RATIO_H / ASPECT_RATIO_W;
+      return [width, height];
+    }
+    const width = 900;
+    const height = width * ASPECT_RATIO_H / ASPECT_RATIO_W;
+    return [width, height];
   }
 
   // Canvas初期化
@@ -99,9 +124,14 @@ export default function HeroBanner() {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     const img = imgsRef.current[current];
+    const dpr = window.devicePixelRatio || 1;
     if (canvas && ctx && img) {
-      canvas.width = w;
-      canvas.height = h;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, w, h);
       ctx.globalAlpha = 1;
       ctx.drawImage(img, 0, 0, w, h);
@@ -112,14 +142,18 @@ export default function HeroBanner() {
   useEffect(() => {
     function handleResize() {
       if (next !== null || showImg) return;
-      const canvas = canvasRef.current;
-      if (!canvas) return;
       const [w, h] = getCanvasSize();
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext("2d");
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext("2d");
       const img = imgsRef.current[current];
-      if (ctx && img) {
+      const dpr = window.devicePixelRatio || 1;
+      if (canvas && ctx && img) {
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = `${w}px`;
+        canvas.style.height = `${h}px`;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
         ctx.clearRect(0, 0, w, h);
         ctx.globalAlpha = 1;
         ctx.drawImage(img, 0, 0, w, h);
@@ -133,7 +167,7 @@ export default function HeroBanner() {
   // ======== JSX ========
   return (
     <section className="w-full flex flex-col items-center pt-0 pb-2">
-      {/* ロゴ：Heroバナーの上に中央配置でmarginTopなし */}
+      {/* ロゴ */}
       <div
         className="z-20"
         style={{
@@ -162,28 +196,46 @@ export default function HeroBanner() {
         />
       </div>
 
-      {/* バナー本体。スマホで左右余白あり・中央寄せ */}
-      <div className="relative w-full px-4 sm:px-0 flex justify-center">
-        <div className="w-full max-w-3xl aspect-[16/7.2] md:aspect-[16/6.3] rounded-xl overflow-hidden shadow-lg border border-gray-100/50 bg-white/60">
+      {/* 横幅いっぱい・高さ自動（アスペクト維持） */}
+      <div className="relative w-full flex justify-center">
+        <div
+          className="overflow-hidden shadow-lg border border-gray-100/50 bg-white/60"
+          style={{
+            width: "100vw",
+            maxWidth: "900px",
+            margin: "0 auto",
+            position: "relative",
+            borderRadius, // スマホのみ角丸ナシ
+            aspectRatio: `${ASPECT_RATIO_W} / ${ASPECT_RATIO_H}`,
+          }}
+        >
           {showImg ? (
             <img
               src={images[current]}
               alt="hero"
-              className="w-full h-full object-cover rounded-xl"
               draggable={false}
-              style={{ aspectRatio: "16/7.2", objectFit: "cover" }}
+              style={{
+                width: "100vw",
+                maxWidth: "900px",
+                height: "auto",
+                aspectRatio: `${ASPECT_RATIO_W} / ${ASPECT_RATIO_H}`,
+                display: "block",
+                objectFit: "cover",
+                borderRadius, // スマホのみ角丸ナシ
+              }}
             />
           ) : (
             <canvas
               ref={canvasRef}
-              width={getCanvasSize()[0]}
-              height={getCanvasSize()[1]}
-              className="w-full h-full rounded-xl"
               style={{
                 display: "block",
+                width: "100vw",
+                maxWidth: "900px",
+                height: "auto",
+                aspectRatio: `${ASPECT_RATIO_W} / ${ASPECT_RATIO_H}`,
+                background: "#f5f6f7",
                 objectFit: "cover",
-                aspectRatio: "16/7.2",
-                background: "#f5f6f7"
+                borderRadius, // スマホのみ角丸ナシ
               }}
             />
           )}
